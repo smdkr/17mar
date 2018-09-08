@@ -1,0 +1,30 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+// 슬보 HealthBar 스크립트
+
+public class HealthBar : MonoBehaviour {
+    public Image Bar;
+    public float maxHealth = 100f;
+    public float curHealth = 0f;
+
+    void Start()
+    {
+        curHealth = maxHealth;
+        InvokeRepeating("DecreaseHealth", 0f, 2f);
+    }
+
+    void DecreaseHealth()
+    {
+        curHealth -= 5f;
+        float calcHealth = curHealth / maxHealth; //70 / 100 0.7
+        SetHealth(calcHealth);
+    }
+
+    void SetHealth(float myhealth)
+    {
+        Bar.fillAmount = myhealth;
+    }
+}
